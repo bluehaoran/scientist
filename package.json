@@ -1,7 +1,10 @@
 {
   "name": "scientist",
   "version": "1.1.1",
-  "author": "Trello Inc.",
+  "author": [
+    "Trello Inc.",
+    "bluehaoran"
+  ],
   "description": "Carefully refactor critical paths in production",
   "keywords": [
     "science",
@@ -10,12 +13,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/trello/scientist.git"
+    "url": "https://github.com/bluehaoran/scientist.git"
   },
   "bugs": {
-    "url": "https://github.com/trello/scientist/issues"
+    "url": "https://github.com/bluehaoran/scientist/issues"
   },
-  "homepage": "https://github.com/trello/scientist#readme",
+  "homepage": "https://github.com/bluehaoran/scientist#readme",
   "main": "index.js",
   "files": [
     "lib",

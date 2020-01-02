@@ -4,6 +4,12 @@
 [![Build Status](https://travis-ci.org/trello/scientist.svg?branch=master)](https://travis-ci.org/trello/scientist)
 [![Coverage Status](https://coveralls.io/repos/github/trello/scientist/badge.svg?branch=master)](https://coveralls.io/github/trello/scientist)
 
+## Introduction / History
+
+Scientist is an ES6 library which allows testing of new code against old code **in production**.
+
+This Scientist is a Javascript ES6 fork of Trello's CoffeeScript Scientist, which was an adaptation of Github's Ruby [Ruby code](https://github.com/github/scientist). 
+
 ## Table of contents
 
 * [API Documentation](docs/api.md)
@@ -245,9 +251,8 @@ science('parse headers', (experiment) => {
 });
 ```
 
-### Why CoffeeScript?
+# Development
 
-This project started out internally at Trello and only later was spun off into a
-separate module. As such, it was written using the language, dependencies, and
-style of the Trello codebase. The code is hopefully simple enough to grok such
-that the language choice does not deter contributors.
+This code was originally written in CoffeeScript by the fine folk at Trello. 
+
+In Jan 2020, I forked this project, and converted it to a pure Javascript project to make it more easy to maintain, using the very very useful [Decaffeinate](https://decaffeinate-project.org/) project.
