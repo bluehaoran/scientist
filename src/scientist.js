@@ -1,24 +1,41 @@
-_ = require('underscore')
-EventEmitter = require('events').EventEmitter
+/*
+ * decaffeinate suggestions:
+ * DS001: Remove Babel/TypeScript constructor workaround
+ * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
+ */
+const _ = require('underscore');
+const {
+  EventEmitter
+} = require('events');
 
-Experiment = require('./experiment')
+const Experiment = require('./experiment');
 
-class Scientist extends EventEmitter
-  constructor: ->
-    @_sampler = _.constant(true)
+class Scientist extends EventEmitter {
+  constructor() {
+    {
+      // Hack: trick Babel/TypeScript into allowing this before super.
+      if (false) { super(); }
+      let thisFn = (() => { return this; }).toString();
+      let thisName = thisFn.match(/return (?:_assertThisInitialized\()*(\w+)\)*;/)[1];
+      eval(`${thisName} = this;`);
+    }
+    this._sampler = _.constant(true);
+  }
 
-  sample: (sampler) -> @_sampler = sampler
+  sample(sampler) { return this._sampler = sampler; }
 
-  science: (name, setup) ->
-    experiment = new Experiment(name)
-    setup(experiment)
+  science(name, setup) {
+    const experiment = new Experiment(name);
+    setup(experiment);
 
-    @emit('experiment', experiment)
+    this.emit('experiment', experiment);
 
-    # Proxy events from experiments
-    experiment.on('skip', EventEmitter::emit.bind(@, 'skip'))
-    experiment.on('result', EventEmitter::emit.bind(@, 'result'))
-    experiment.on('error', EventEmitter::emit.bind(@, 'error'))
-    return experiment.run(@_sampler)
+    // Proxy events from experiments
+    experiment.on('skip', EventEmitter.prototype.emit.bind(this, 'skip'));
+    experiment.on('result', EventEmitter.prototype.emit.bind(this, 'result'));
+    experiment.on('error', EventEmitter.prototype.emit.bind(this, 'error'));
+    return experiment.run(this._sampler);
+  }
+}
 
-module.exports = Scientist
+module.exports = Scientist;
